@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>just.met</groupId>
-    <artifactId>design-pattern</artifactId>
+    <artifactId>just-met-design-pattern</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>design-pattern</name>
+    <name>just-met-design-pattern</name>
     <description>study project for Spring Boot</description>
 
     <properties>

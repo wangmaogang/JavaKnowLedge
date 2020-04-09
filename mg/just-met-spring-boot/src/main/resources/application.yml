@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: just-met-spring-boot-service
+  profiles:
+    active: test
+
+

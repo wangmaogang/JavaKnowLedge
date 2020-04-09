@@ -1,0 +1,27 @@
+
+
+
+>####@RestController和@Controller
+>- @RestController加在类上面的注解，使得类里面的每个方法都将json/xml返回数据加返回到前台页面中。
+>- @Controller加在类上面的注解，使得类里面的每个方法都返回一个试图页面。
+>- @Controller和@ResponseBody（加在方法/类上面）一起使用，和@RestController的作用相同。
+
+
+>####@RequestMapping
+>- 在Spring MVC 中使用 @RequestMapping 来映射请求，也就是通过它来指定控制器可以处理哪些URL请求，相当于Servlet中在web.xml中配置
+
+>####SpringServletContainerInitializer
+>- 想要用web容器启动项目，实现configure可以打为war包启动（需要有tomcat），否则是jar包启动（已经包含内嵌tomcat）。
+>- 继承SpringBootServletInitializer可以使用外部tomcat，自己可以设置端口号，项目名。不需要用外部tomcat的话继承不继承都可以。
+>- SpringServletContainerInitializer作为ServletContainerInitializer的实现类，通过SPI机制，在web容器加载的时候会自动的被调用。（这个类上还有一个注解@HandlesTypes，它的作用是将感兴趣的一些类注入到ServletContainerInitializerde）， 而这个类的方法又会扫描找到WebApplicationInitializer的实现类，调用它的onStartup方法，从而起到启动web.xml相同的作用。
+
+>####@Configuration、@Bean配置详解
+>- @Configuration标注在类上，相当于把该类作为spring的xml配置文件中的< beans>，作用为：配置spring容器(应用上下文)
+>- 在@Configuration加上@Bean去注册一个bean 对象，这样我们就不用再去写xml文件去注册bean对象。@Bean标注在方法上(返回某个实例的方法)。
+>- Spring基于xml配置@ComponentScan会自动扫描带有@Component，@Service，@Repository，@Controller注解的类注册成bean并自动装配
+>- @Component和@Bean都是用来注册Bean并装配到Spring容器中，但是Bean比Component的自定义性更强。可以实现一些Component实现不了的自定义加载类
+
+>####@Order
+>- @Order注解不能指定 bean 的加载顺序，它适用于 AOP 的优先级，以及将多个 Bean 注入到集合时，这些 bean 在集合中的顺序
+>- @AutoConfigureOrder指定外部依赖的 AutoConfig 的加载顺序（即定义在/META-INF/spring.factories文件中的配置 bean 优先级)，在当前工程中使用这个注解并没有什么鸟用
+>- 同样的 @AutoConfigureBefore和 @AutoConfigureAfter这两个注解的适用范围和@AutoConfigureOrder一样
