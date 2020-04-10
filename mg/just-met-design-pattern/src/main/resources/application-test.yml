@@ -1,0 +1,5 @@
+server:
+  port: 8881
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /demo

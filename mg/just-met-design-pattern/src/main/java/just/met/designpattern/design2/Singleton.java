@@ -1,31 +1,33 @@
 package just.met.designpattern.design2;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * 静态内部类单例模式
+ * 单例模式-静态内部类
  * @author wangmaogang
  */
 public class Singleton {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Singleton.class);
 
     private Singleton(){
-        LOG.debug("Singleton构造方法");
+        System.out.println("Singleton-构造方法");
     }
 
     public static Singleton getInstance(){
-        LOG.debug("getInstance()静态方法");
+        System.out.println("Singleton-getInstance()静态方法");
         return Holder.singleton;
     }
 
     private static class Holder{
-        static{
-            LOG.debug("Holder静态方法块");
-        }
-
         private static final Singleton singleton = new Singleton();
+    }
+
+    /**
+     * 单独测试静态内部类模式加载顺序
+     *
+     * 1. 静态方法、构造方法 均未执行
+     * @param args
+     */
+    public static void main(String[] args) {
+        System.out.println("测试静态方法");
     }
 
 }
