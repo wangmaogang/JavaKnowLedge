@@ -1,0 +1,60 @@
+> ######1.什么是注解
+> 注解也叫元数据,注解是JDK1.5版本开始引入的一个特性，用于对代码进行说明，可以对包、类、接口、字段、方法参数、局部变量等进行注解
+
+> ######2.一般常用的注解可以分为三类：
+> - 一类是Java自带的标准注解，包括@Override（标明重写某个方法）、@Deprecated（标明某个类或方法过时）和@SuppressWarnings（标明要忽略的警告），使用这些注解后编译器就会进行检查。
+> - 一类为元注解，元注解是用于定义注解的注解，包括@Retention（标明注解被保留的阶段）、@Target（标明注解使用的范围）、@Inherited（标明注解可继承）、@Documented（标明是否生成javadoc文档）
+【这4个元注解都是在jdk的java.lang.annotation包下面】
+>- 一类为自定义注解，可以根据自己的需求定义注解
+
+
+> ######3.注解的用途
+> - 生成文档，通过代码里标识的元数据生成javadoc文档。
+> - 编译检查，通过代码里标识的元数据让编译器在编译期间进行检查验证。
+> - 编译时动态处理，编译时通过代码里标识的元数据动态处理，例如动态生成代码。
+> - 运行时动态处理，运行时通过代码里标识的元数据动态处理，例如使用反射注入实例
+
+
+> ######4.@Target:注解的作用目标
+> - @Target(ElementType.TYPE)   //接口、类、枚举
+> - @Target(ElementType.FIELD) //字段、枚举的常量
+> - @Target(ElementType.METHOD) //方法
+> - @Target(ElementType.PARAMETER) //方法参数
+> - @Target(ElementType.CONSTRUCTOR)  //构造函数
+> - @Target(ElementType.LOCAL_VARIABLE)//局部变量
+> - @Target(ElementType.ANNOTATION_TYPE)//注解
+> - @Target(ElementType.PACKAGE) ///包   
+
+> ######5.@Retention：注解的保留位置　　　　　　　　　
+> - @Retention(RetentionPolicy.SOURCE)   //注解仅存在于源码中，在class字节码文件中不包含
+> - @Retention(RetentionPolicy.CLASS)     // 默认的保留策略，注解会在class字节码文件中存在，但运行时无法获得，
+> - @Retention(RetentionPolicy.RUNTIME)  // 注解会在class字节码文件中存在，在运行时可以通过反射获取到
+
+
+> ######6.@Retention注解使用情况分析
+> - 首先要明确生命周期长度 SOURCE < CLASS < RUNTIME ，所以前者能作用的地方后者一定也能作用。
+> - 一般如果需要在运行时去动态获取注解信息，那只能用 RUNTIME 注解，比如@Deprecated使用RUNTIME注解
+> - 如果要在编译时进行一些预处理操作，比如生成一些辅助代码（如 ButterKnife），就用 CLASS注解；
+> - 如果只是做一些检查性的操作，比如 @Override 和 @SuppressWarnings，使用SOURCE 注解。
+
+> ######7.实现注解三要素：
+> - 1，注解声明、
+> - 2，使用注解的元素、
+> - 3，操作注解使其起作用(注解处理器)
+
+
+> ######8.注解处理器
+
+> 这个是注解使用的核心了，前面我们说了那么多注解相关的，那到底java是如何去处理这些注解的呢
+> 从getAnnotation进去可以看到java.lang.class实现了AnnotatedElement方法
+> MyAnTargetType t = AnnotationTest.class.getAnnotation(MyAnTargetType.class);
+> public final class Class<T> implements java.io.Serializable,
+                              GenericDeclaration,
+                              Type,
+                              AnnotatedElement
+> java.lang.reflect.AnnotatedElement 接口是所有程序元素（Class、Method和Constructor）的父接口，所以程序通过反射获取了某个类的AnnotatedElement对象之后，程序就可以调用该对象的如下四个个方法来访问Annotation信息：
+
+> - 方法1：<T extends Annotation> T getAnnotation(Class<T> annotationClass): 返回改程序元素上存在的、指定类型的注解，如果该类型注解不存在，则返回null。
+> - 方法2：Annotation[] getAnnotations():返回该程序元素上存在的所有注解。
+> - 方法3：boolean is AnnotationPresent(Class<?extends Annotation> annotationClass):判断该程序元素上是否包含指定类型的注解，存在则返回true，否则返回false.
+> - 方法4：Annotation[] getDeclaredAnnotations()：返回直接存在于此元素上的所有注释。与此接口中的其他方法不同，该方法将忽略继承的注释。（如果没有注释直接存在于此元素上，则返回长度为零的一个数组。）该方法的调用者可以随意修改返回的数组；这不会对其他调用者返回的数组产生任何影响

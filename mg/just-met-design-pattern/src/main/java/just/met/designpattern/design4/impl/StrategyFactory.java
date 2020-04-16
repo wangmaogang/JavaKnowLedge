@@ -41,6 +41,17 @@ public class StrategyFactory {
         StrategyFactory.getInstance().get(StrategyType.STRATEGY_A.getType()).AlgorithmInterface();
         StrategyFactory.getInstance().get(StrategyType.STRATEGY_B.getType()).AlgorithmInterface();
         StrategyFactory.getInstance().get(StrategyType.STRATEGY_B.getType()).AlgorithmInterface();
+
+        //执行结果
+        //StrategyFactory-Holder-getInstance()方法
+        //StrategyFactory构造方法
+        //getType() = STRATEGY_A
+        //StrategyFactory-Holder-getInstance()方法
+        //getType() = STRATEGY_A
+        //StrategyFactory-Holder-getInstance()方法
+        //getType() = STRATEGY_B
+        //StrategyFactory-Holder-getInstance()方法
+        //getType() = STRATEGY_B
     }
 
 }
