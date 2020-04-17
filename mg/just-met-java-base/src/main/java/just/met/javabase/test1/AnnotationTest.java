@@ -24,7 +24,7 @@ public class AnnotationTest {
         TargetMethod tm = null;
         try {
             // 根据反射获取AnnotationTest类上的testMethod方法
-            Method method = AnnotationTest.class.getDeclaredMethod("test",String.class);
+            Method method = AnnotationTest.class.getDeclaredMethod("testMethod",String.class);
             // 获取方法上的注解MyAnTargetMethod
             tm = method.getAnnotation(TargetMethod.class);
             System.out.println("方法上的注解值 === "+tm.getValue());
@@ -39,7 +39,7 @@ public class AnnotationTest {
             }
             method.invoke(new AnnotationTest(), "改变默认参数");
             // 获取AnnotationTest类上字段field的注解MyAnTargetField
-            TargetField fieldAn = AnnotationTest.class.getDeclaredField("field").getAnnotation(TargetField.class);
+            TargetField fieldAn = AnnotationTest.class.getDeclaredField("name").getAnnotation(TargetField.class);
             System.out.println("字段上的注解值 === "+fieldAn.getValue());
         } catch (Exception e) {
             e.printStackTrace();

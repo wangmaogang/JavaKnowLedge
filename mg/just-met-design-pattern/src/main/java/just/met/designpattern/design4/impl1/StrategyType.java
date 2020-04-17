@@ -1,6 +1,4 @@
-package just.met.designpattern.design4.impl;
-
-import lombok.Data;
+package just.met.designpattern.design4.impl1;
 
 /**
  * @author wangmaogang

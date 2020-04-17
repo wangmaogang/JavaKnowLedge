@@ -1,10 +1,13 @@
-package just.met.designpattern.design4.impl;
+package just.met.designpattern.design4.impl1;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author wangmaogang
+ */
 public class StrategyFactory {
 
     private static Map<String,Strategy> map;

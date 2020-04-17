@@ -1,4 +1,4 @@
-package just.met.designpattern.design4.impl;
+package just.met.designpattern.design4.impl1;
 
 /**
  * 抽象算法类

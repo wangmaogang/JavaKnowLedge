@@ -1,10 +1,10 @@
-package just.met.designpattern.design4.impl;
+package just.met.designpattern.design4.impl1;
 
 /**
- * 策略B实现类
+ * 策略A实现类
  * @author wangmaogang
  */
-public class ConcreteStrategyC extends Strategy {
+public class ConcreteStrategyA extends Strategy {
     
     @Override
     public void AlgorithmInterface() {
@@ -13,6 +13,6 @@ public class ConcreteStrategyC extends Strategy {
 
     @Override
     public String getType() {
-        return StrategyType.STRATEGY_C.getType();
+        return StrategyType.STRATEGY_A.getType();
     }
 }
