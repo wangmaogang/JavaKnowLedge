@@ -1,4 +1,4 @@
-package just.met.designpattern.design4.impl1;
+package just.met.designpattern.design4.impl;
 
 /**
  * 策略B实现类

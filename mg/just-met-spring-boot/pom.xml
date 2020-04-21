@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>just.met</groupId>
-    <artifactId>spring-boot</artifactId>
+    <artifactId>just-met-spring-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot</name>
+    <name>just-met-spring-boot</name>
     <description>study project for Spring Boot</description>
 
     <properties>

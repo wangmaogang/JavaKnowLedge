@@ -1,9 +1,9 @@
-package just.met.designpattern.design4.impl1;
+package just.met.designpattern.design4.impl;
 
 /**
  * 抽象算法类
  */
-abstract class Strategy {
+public abstract class Strategy {
     /**
      * 算法方法
      */

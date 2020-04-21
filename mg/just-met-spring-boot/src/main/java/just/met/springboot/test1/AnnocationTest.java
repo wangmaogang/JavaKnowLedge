@@ -1,4 +1,4 @@
-package just.met.springboot.config;
+package just.met.springboot.test1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @author wangmaogang
  */
 @Configuration
-public class TestConfig {
+public class AnnocationTest {
 
     @Bean
     public String BeanTest(){

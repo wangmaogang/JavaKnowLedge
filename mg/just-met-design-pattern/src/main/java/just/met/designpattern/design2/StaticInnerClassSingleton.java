@@ -4,20 +4,20 @@ package just.met.designpattern.design2;
  * 单例模式-静态内部类
  * @author wangmaogang
  */
-public class Singleton {
+public class StaticInnerClassSingleton {
 
 
-    private Singleton(){
-        System.out.println("Singleton-构造方法");
+    private StaticInnerClassSingleton(){
+        System.out.println("StaticInnerClassSingleton-构造方法");
     }
 
-    public static Singleton getInstance(){
-        System.out.println("Singleton-getInstance()静态方法");
+    public static StaticInnerClassSingleton getInstance(){
+        System.out.println("StaticInnerClassSingleton-getInstance()静态方法");
         return Holder.singleton;
     }
 
     private static class Holder{
-        private static final Singleton singleton = new Singleton();
+        private static final StaticInnerClassSingleton singleton = new StaticInnerClassSingleton();
     }
 
     /**

@@ -12,15 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("helloWorld")
-public class HelloWordController {
+@RequestMapping("test1")
+public class Test1Controller {
 
     @Autowired
     MgService mgService;
 
+    MgService newMgService = new MgService();
+
     @RequestMapping(value = "get",method = RequestMethod.GET)
     public String get() {
-        return "hello world"+mgService.printStr();
+        System.out.println("newMgService:"+newMgService.printStr());
+        return "test1"+mgService.printStr();
     }
 
 }

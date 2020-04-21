@@ -31,8 +31,8 @@ public class GlobalCorsConfig {
         // 放行哪些原始域(请求方式)
         corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
         // getResponseHeader()可返回的值（在web端获取ajax request的response中的自定义的header值，必须addExposedHeader
-        corsConfiguration.addExposedHeader("noahsessionID");
-        corsConfiguration.addExposedHeader("noaToken");
+        corsConfiguration.addExposedHeader("sessionID");
+        corsConfiguration.addExposedHeader("token");
 
         //2.添加映射路径
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
