@@ -1,10 +1,7 @@
 package just.met.springboot.test1;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -13,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @author wangmaogang
  */
 @Configuration
-public class AnnocationTest {
+public class AnnotationAutoDiTest {
 
     @Bean
     public String BeanTest(){
