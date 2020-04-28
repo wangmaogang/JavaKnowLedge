@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>just.met</groupId>
-    <artifactId>just-met-spring-boot</artifactId>
+    <artifactId>just-met-data-structure</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>just-met-spring-boot</name>
+    <name>just-met-data-structure</name>
     <description>study project for Spring Boot</description>
 
     <properties>
@@ -24,16 +24,6 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
