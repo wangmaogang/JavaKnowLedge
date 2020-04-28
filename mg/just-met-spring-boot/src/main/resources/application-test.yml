@@ -1,5 +1,8 @@
 server:
   port: 8888
-  #项目名，如果不设定，默认是 /
   servlet:
-    context-path: /demo
+    context-path: /demo #项目名，如果不设定，默认是 /
+  tomcat:
+    max-connections: 1 #设置tomcat最大连接数
+    max-threads: 2 #配置最大线程数-实际处理请求的并发数
+

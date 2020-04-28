@@ -1,8 +1,7 @@
-package just.met.springboot.test1;
+package just.met.springboot.注解;
 
 
-import just.met.springboot.test1.service.MgService;
-import org.springframework.beans.factory.annotation.Autowired;
+import just.met.springboot.注解.service.MgService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

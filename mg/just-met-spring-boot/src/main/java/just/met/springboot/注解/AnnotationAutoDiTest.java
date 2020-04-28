@@ -1,4 +1,4 @@
-package just.met.springboot.test1;
+package just.met.springboot.注解;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

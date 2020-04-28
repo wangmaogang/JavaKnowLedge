@@ -1,4 +1,4 @@
-package just.met.designpattern.design2;
+package just.met.designpattern.A创建型模式.单例模式;
 
 
 /**
