@@ -20,14 +20,4 @@ public class Singleton {
         private static final Singleton singleton = new Singleton();
     }
 
-    /**
-     * 单独测试静态内部类模式加载顺序
-     *
-     * 1. 静态方法、构造方法 均未执行
-     * @param args
-     */
-    public static void main(String[] args) {
-        System.out.println("测试静态方法");
-    }
-
 }

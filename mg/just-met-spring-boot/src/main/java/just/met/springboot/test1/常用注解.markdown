@@ -3,7 +3,7 @@
 
 >####@RestController和@Controller
 >- @RestController加在类上面的注解，使得类里面的每个方法都将json/xml返回数据加返回到前台页面中。
->- @Controller加在类上面的注解，使得类里面的每个方法都返回一个试图页面。
+>- @Controller加在类上面的注解，使得类里面的每个方法都返回一个视图页面。
 >- @Controller和@ResponseBody（加在方法/类上面）一起使用，和@RestController的作用相同。
 
 
