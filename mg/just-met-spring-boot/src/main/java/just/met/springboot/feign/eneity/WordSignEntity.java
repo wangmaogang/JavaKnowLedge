@@ -1,4 +1,4 @@
-package just.met.springboot.feign;
+package just.met.springboot.feign.eneity;
 
 import lombok.Data;
 

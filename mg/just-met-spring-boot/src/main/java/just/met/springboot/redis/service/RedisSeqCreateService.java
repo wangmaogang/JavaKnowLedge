@@ -19,11 +19,13 @@ public class RedisSeqCreateService {
     RedisSequenceUtil redisSequenceUtil;
 
     /**
-     * 普通获取序号方法，存在并发问题
+     * 1、普通获取序号方法，存在并发问题
+     *
+     * redis重启后，多个用户同时访问，会直接请求数据库，导致重号问题
      * @param dataKey
      * @return
      */
-    public int getVolumeNextNum(String dataKey) {
+    public int getNextNum(String dataKey) {
 
         //默认初始编号为0
         String lastNum;
@@ -32,9 +34,9 @@ public class RedisSeqCreateService {
         if (jedisTool.existKey(dataKey)) {
             lastNum = jedisTool.get(dataKey);
         }
-        //情况2：redis没有值，去数据库查找当前最大编号
+        //情况2：redis没有值，去数据库查找当前最大编号,假设当前是5
         else {
-            lastNum = "0";
+            lastNum = "5";
         }
 
         //如果lastNum为空值，则置为0
@@ -48,12 +50,12 @@ public class RedisSeqCreateService {
     }
 
     /**
-     * 获取对应key的序号（并发情况下不会产生重号问题）
+     * 2、获取对应key的序号，采用redis的原子操作（并发情况下不会产生重号问题）
      *
      * @param key
      * @return
      */
-    public long getSeqNum(String key) throws InterruptedException {
+    public long getNextSeqNum(String key) throws InterruptedException {
 
         //获取当前序号
         long nowNum = redisSequenceUtil.getNow(key);

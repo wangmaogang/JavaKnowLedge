@@ -1,7 +1,6 @@
-package just.met.springboot.多线程.thread_local;
+package just.met.springboot.线程.thread_local;
 
 
-import just.met.springboot.多线程.thread_local.t1.CountTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 多线程下测试接口
+ * 多线程下ThreadLocal测试
+ *
+ * springboot自动装载bean，countTestService是单例模式，全局只有一个实例，
+ * 每次调用都使用同一个实例，若不使用ThreadLocal，则实例里的变量会累加
  * @author wangmaogang
  */
 
@@ -26,7 +28,7 @@ public class ThreadLocalTestController {
     CountTestService countTest2Service;
 
     /**
-     * 测试使用ThreadLocal
+     * 使用ThreadLocal，每次请求都创建线程,变量不会累加
      * @return
      */
     @RequestMapping(value = "t1",method = RequestMethod.GET)
@@ -44,7 +46,8 @@ public class ThreadLocalTestController {
     }
 
     /**
-     * 测试不使用ThreadLocal
+     * 不使用ThreadLocal，变量会累加
+     *
      * @return
      */
     @RequestMapping(value = "t2",method = RequestMethod.GET)

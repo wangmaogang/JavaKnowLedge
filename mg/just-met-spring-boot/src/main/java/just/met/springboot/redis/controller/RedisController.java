@@ -1,4 +1,4 @@
-package just.met.springboot.redis;
+package just.met.springboot.redis.controller;
 
 
 import just.met.springboot.redis.service.RedisSeqCreateService;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * 测试接口
+ * Redis并发测试接口
  * @author wangmaogang
  */
 
@@ -22,24 +22,24 @@ public class RedisController {
     @Resource
     RedisSeqCreateService redisSeqCreateService;
 
-    String key = "NEW_KEY_2";
+    String key = "NEW_KEY";
 
     /**
-     * RedisSeqCreateService获取
+     * 获取Redis序列号，可能存在重号问题
      * @return
      */
     @RequestMapping(value = "test1",method = RequestMethod.GET)
     public String test1() {
-        return "结果："+redisSeqCreateService.getVolumeNextNum(key);
+        return "结果："+redisSeqCreateService.getNextNum(key);
     }
 
     /**
-     * RedisSequenceUtil获取序列号
+     * RedisAtomicLong原子操作获取序列号，不存在重号问题
      * @return
      */
     @RequestMapping(value = "test2",method = RequestMethod.GET)
     public String test2() throws InterruptedException {
-        return "结果："+redisSeqCreateService.getSeqNum(key);
+        return "结果："+redisSeqCreateService.getNextSeqNum(key);
     }
 
 }

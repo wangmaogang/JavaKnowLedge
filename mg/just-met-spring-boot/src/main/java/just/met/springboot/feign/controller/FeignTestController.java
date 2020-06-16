@@ -1,5 +1,8 @@
-package just.met.springboot.feign;
+package just.met.springboot.feign.controller;
 
+import just.met.springboot.feign.eneity.Result;
+import just.met.springboot.feign.service.WordProcessService;
+import just.met.springboot.feign.eneity.WordSignEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

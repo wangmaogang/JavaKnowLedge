@@ -1,4 +1,4 @@
-package just.met.springboot.feign;
+package just.met.springboot.feign.eneity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

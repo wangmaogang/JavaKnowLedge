@@ -1,5 +1,6 @@
-package just.met.springboot.多线程.thread_local.t1;
+package just.met.springboot.线程.thread_local.impl;
 
+import just.met.springboot.线程.thread_local.CountTestService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @author wangmaogang
  */
 @Service("CountTestServiceImpl")
-public class CountTestServiceImpl implements CountTestService{
+public class CountTestServiceImpl implements CountTestService {
 
     private ThreadLocal<Integer> local = new ThreadLocal<>();
 

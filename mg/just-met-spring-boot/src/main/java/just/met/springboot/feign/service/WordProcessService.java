@@ -1,5 +1,7 @@
-package just.met.springboot.feign;
+package just.met.springboot.feign.service;
 
+import just.met.springboot.feign.eneity.WordSignEntity;
+import just.met.springboot.feign.eneity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,7 @@ public interface WordProcessService {
      * @return R 结果
      * */
     @PostMapping(value = "/api/word/paramConvert", headers = "Content-Type: application/x-www-form-urlencoded")
-    Result paramConvert(@RequestParam("filePath") String filePath,@RequestParam("newFilePath") String newFilePath,@RequestParam("data") String data);
+    Result paramConvert(@RequestParam("filePath") String filePath, @RequestParam("newFilePath") String newFilePath, @RequestParam("data") String data);
 
 
     /**

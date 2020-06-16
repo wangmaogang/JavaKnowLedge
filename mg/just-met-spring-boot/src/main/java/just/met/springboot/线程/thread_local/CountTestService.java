@@ -1,4 +1,4 @@
-package just.met.springboot.多线程.thread_local.t1;
+package just.met.springboot.线程.thread_local;
 
 
 import org.springframework.stereotype.Service;
