@@ -23,7 +23,6 @@ public class StrategyFactory {
         list.add(new ConcreteStrategyB());
         list.add(new ConcreteStrategyC());
         map = list.stream().collect(Collectors.toMap(AbstractStrategy::getType,strategy -> strategy));
-
     }
 
     private static class Holder{
