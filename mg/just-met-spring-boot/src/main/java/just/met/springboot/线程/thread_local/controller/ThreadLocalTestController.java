@@ -1,6 +1,7 @@
-package just.met.springboot.线程.thread_local;
+package just.met.springboot.线程.thread_local.controller;
 
 
+import just.met.springboot.线程.thread_local.service.CountTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
-package just.met.springboot.线程.thread_local.impl;
+package just.met.springboot.线程.thread_local.service.impl;
 
-import just.met.springboot.线程.thread_local.CountTestService;
+import just.met.springboot.线程.thread_local.service.CountTestService;
 import org.springframework.stereotype.Service;
 
 /**
