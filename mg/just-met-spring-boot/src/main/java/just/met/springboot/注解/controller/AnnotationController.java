@@ -2,6 +2,7 @@ package just.met.springboot.注解.controller;
 
 
 import just.met.springboot.注解.service.AnnotationTestService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
