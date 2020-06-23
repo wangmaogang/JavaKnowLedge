@@ -1,7 +1,8 @@
-package just.met.javabase.反射.动态代理;
+package just.met.javabase.动态代理.jdk动态代理;
 
 /**
- * @author 真实实例-接口
+ * 真实实例-接口
+ * @author wangmaogang
  */
 public interface ISubject {
     /**

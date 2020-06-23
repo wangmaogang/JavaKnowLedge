@@ -1,5 +1,6 @@
 package just.met.springboot.feign.service;
 
+import just.met.springboot.feign.eneity.WordMergeEntity;
 import just.met.springboot.feign.eneity.WordSignEntity;
 import just.met.springboot.feign.eneity.Result;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -33,5 +34,13 @@ public interface WordProcessService {
     @RequestMapping(value = "/api/word/writeSignature", method = RequestMethod.POST)
     Result writeSignature(@RequestBody WordSignEntity wordSignEntity);
 
+
+    /**
+     * Word 文档合并
+     * @param wordMergeEntity
+     * @return R 结果
+     * */
+    @RequestMapping(value = "/api/word/MergeWordFiles", method = RequestMethod.POST)
+    Result MergeWordFiles(@RequestBody WordMergeEntity wordMergeEntity);
 
 }

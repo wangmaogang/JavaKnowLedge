@@ -1,4 +1,4 @@
-package just.met.javabase.反射.动态代理;
+package just.met.javabase.动态代理.jdk动态代理;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

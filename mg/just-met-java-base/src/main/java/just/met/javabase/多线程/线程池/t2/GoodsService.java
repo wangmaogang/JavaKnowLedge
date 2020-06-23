@@ -1,4 +1,4 @@
-package just.met.javabase.多线程.t2;
+package just.met.javabase.多线程.线程池.t2;
 
 /**
  *@author Mark老师   享学课堂 https://enjoy.ke.qq.com 

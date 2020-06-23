@@ -1,4 +1,8 @@
-package just.met.javabase.反射.动态代理;
+package just.met.javabase.动态代理.cglib动态代理;
+
+import just.met.javabase.动态代理.jdk动态代理.ISubject;
+import just.met.javabase.动态代理.jdk动态代理.JdkDynamicProxy;
+import just.met.javabase.动态代理.jdk动态代理.RealSubject;
 
 /**
  * @author wangmaogang

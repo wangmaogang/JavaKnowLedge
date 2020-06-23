@@ -1,4 +1,4 @@
-package just.met.javabase.多线程.t1;
+package just.met.javabase.多线程.线程池.t1;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

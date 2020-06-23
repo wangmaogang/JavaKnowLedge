@@ -1,7 +1,7 @@
-package just.met.javabase.反射.动态代理;
+package just.met.javabase.动态代理.jdk动态代理;
 
 /**
- * 真实对象-实现类
+ * 真实实例-接口实现类
  * @author wangmaogang
  */
 public class RealSubject implements ISubject{

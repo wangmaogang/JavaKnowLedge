@@ -1,4 +1,4 @@
-package just.met.javabase.多线程.t3;
+package just.met.javabase.多线程.线程池;
 
 
 import java.util.concurrent.*;
