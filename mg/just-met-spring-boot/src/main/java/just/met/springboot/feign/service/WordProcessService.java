@@ -1,5 +1,7 @@
 package just.met.springboot.feign.service;
 
+import feign.Param;
+import just.met.springboot.feign.eneity.WordCheckEntity;
 import just.met.springboot.feign.eneity.WordMergeEntity;
 import just.met.springboot.feign.eneity.WordSignEntity;
 import just.met.springboot.feign.eneity.Result;
@@ -42,5 +44,28 @@ public interface WordProcessService {
      * */
     @RequestMapping(value = "/api/word/MergeWordFiles", method = RequestMethod.POST)
     Result MergeWordFiles(@RequestBody WordMergeEntity wordMergeEntity);
+
+    /**
+     * Word 文档检测
+     * @param wordCheckEntity
+     * @return R 结果
+     * */
+    @RequestMapping(value = "/api/word/WordCheck", method = RequestMethod.POST)
+    Result CheckWordFiles(@RequestBody WordCheckEntity wordCheckEntity);
+
+    /**
+     * Word 文档内容预置
+     * @param filePath
+     * @return R 结果
+     * */
+    @RequestMapping(value = "/api/word/WordPreview", method = RequestMethod.GET)
+    Result WordPreview(@RequestParam("filePath") String filePath);
+
+    /**
+     * timeOutTest 测试
+     * @return R 结果
+     * */
+    @RequestMapping(value = "/api/word/TimeOutTest", method = RequestMethod.GET)
+    Result timeOutTest();
 
 }

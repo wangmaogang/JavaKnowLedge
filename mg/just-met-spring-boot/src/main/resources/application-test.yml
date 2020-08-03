@@ -32,6 +32,12 @@ feign:
   hystrix:
     enabled: false
   client:
+    default:
+      #这里时间一定要调长，否则feign客户端会报ReadTimeOut  服务端报Error parsing HTTP request header
+      connectTimeout: 120000
+      readTimeout: 120000
+      loggerLevel: basic
     wordprocess:
       name: "word-process"
       url: "http://127.0.0.1:12222"
+      readTimeout: 120000

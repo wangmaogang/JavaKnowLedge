@@ -1,11 +1,10 @@
 package just.met.javabase.多线程.线程池.t2;
 
 /**
- *@author Mark老师   享学课堂 https://enjoy.ke.qq.com 
- *
  *类说明：商品的实体类
  */
 public class GoodsInfo {
+
     private final String name;
     private double totalMoney;//总销售额
     private int storeNumber;//库存数

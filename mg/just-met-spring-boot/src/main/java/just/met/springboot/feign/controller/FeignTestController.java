@@ -1,6 +1,7 @@
 package just.met.springboot.feign.controller;
 
 import just.met.springboot.feign.eneity.Result;
+import just.met.springboot.feign.eneity.WordCheckEntity;
 import just.met.springboot.feign.eneity.WordMergeEntity;
 import just.met.springboot.feign.service.WordProcessService;
 import just.met.springboot.feign.eneity.WordSignEntity;
@@ -50,8 +51,35 @@ public class FeignTestController {
         wordMergeEntity.setFilePathList(list);
         wordMergeEntity.setNewFilePath(newFilePath);
         wordMergeEntity.setType(1);
-
         Result r = wordProcessService.MergeWordFiles(wordMergeEntity);
+        return r;
+    }
+
+    @GetMapping("test3")
+    public Result FeignTest3(){
+        List<String> list = new ArrayList<String>();
+        String filePath_1 = "C:\\Users\\noah\\Desktop\\测试1.docx";
+        String filePath_2 = "C:\\Users\\noah\\Desktop\\测试2.docx";
+        String filePath_3 = "C:\\Users\\noah\\Desktop\\测试3.docx";
+        list.add(filePath_1);
+        list.add(filePath_2);
+        list.add(filePath_3);
+        WordCheckEntity wordCheckEntity = new WordCheckEntity();
+        wordCheckEntity.setFilePathList(list);
+        Result r = wordProcessService.CheckWordFiles(wordCheckEntity);
+        return r;
+    }
+
+    @GetMapping("test4")
+    public Result FeignTest4(){
+        String filePath = "C:\\Users\\noah\\Desktop\\测试1.docx";
+        Result r = wordProcessService.WordPreview(filePath);
+        return r;
+    }
+
+    @GetMapping("timeOutTest")
+    public Result timeOutTest(){
+        Result r = wordProcessService.timeOutTest();
         return r;
     }
 }
