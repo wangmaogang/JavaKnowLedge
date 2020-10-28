@@ -2,6 +2,7 @@ package just.met.springboot.statemachine.define;
 
 /**
  * 订单状态
+ * @author wangmaogang
  */
 public enum OrderStatus {
     //待支付

@@ -1,4 +1,4 @@
-package just.met.springboot.redis.config;
+package just.met.springboot.redis.tools;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +35,12 @@ public class JedisConfig  {
 	@Value("${spring.redis.jedis.pool.max-wait}")
 	private long maxWaitMillis;
 
+	@Value("${spring.redis.testOnBorrow}")
+	private boolean testOnBorrow;
+
+	@Value("${spring.redis.testOnReturn}")
+	private boolean testOnReturn;
+
 	@Bean
 	public JedisPool redisPoolFactory(){
 		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
@@ -42,9 +48,10 @@ public class JedisConfig  {
 		jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
 		jedisPoolConfig.setMaxTotal(maxActive);
 		jedisPoolConfig.setMinIdle(minIdle);
+		jedisPoolConfig.setTestOnBorrow(testOnBorrow);
+		jedisPoolConfig.setTestOnReturn(testOnReturn);
 		JedisPool jedisPool = new JedisPool(jedisPoolConfig,host,port,timeout,null);
 		log.info("JedisPool注入成功！");
-		log.info("redis地址：" + host + ":" + port);
 		return  jedisPool;
 	}
 }

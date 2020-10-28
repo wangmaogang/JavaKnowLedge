@@ -20,6 +20,7 @@ import java.util.EnumSet;
 
 /**
  * 订单状态机配置
+ * @author wangmaogang
  */
 @Configuration
 @EnableStateMachine(name = "OrderStateMachine")

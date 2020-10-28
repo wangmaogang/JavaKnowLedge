@@ -2,6 +2,7 @@ package just.met.springboot.statemachine.define;
 
 /**
  * 订单状态改变事件
+ * @author wangmaogang
  */
 public enum OrderStatusChangeEvent {
     //支付

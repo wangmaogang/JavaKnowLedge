@@ -25,20 +25,11 @@ public class RedisController {
     String key = "NEW_KEY";
 
     /**
-     * 获取Redis序列号，可能存在重号问题
-     * @return
-     */
-    @RequestMapping(value = "test1",method = RequestMethod.GET)
-    public String test1() {
-        return "结果："+redisSeqCreateService.getNextNum(key);
-    }
-
-    /**
      * RedisAtomicLong原子操作获取序列号，不存在重号问题
      * @return
      */
-    @RequestMapping(value = "test2",method = RequestMethod.GET)
-    public String test2() throws InterruptedException {
+    @RequestMapping(value = "getNextSeqNum",method = RequestMethod.GET)
+    public String getNextSeqNum() {
         return "结果："+redisSeqCreateService.getNextSeqNum(key);
     }
 

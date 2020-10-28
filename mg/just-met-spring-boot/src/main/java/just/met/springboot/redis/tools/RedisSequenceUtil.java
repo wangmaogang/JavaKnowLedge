@@ -8,10 +8,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * @program: CRRC_Archives_Management
- * @description: Redis序号工具
- * @author: hunter
- * @create: 2020/06/04
+ * @description: Redis生成序号工具（原子）
+ * @author wangmaogang
  */
 @Component
 public class RedisSequenceUtil {
@@ -20,21 +18,6 @@ public class RedisSequenceUtil {
 
     @Resource
     RedisTemplate dictRedisTemplate;
-
-    /**
-     * 获取序列号（自动增长）
-     *
-     * @param key
-     * @return
-     */
-    public Long getIncr(String key) {
-        if (key == null) {
-            return null;
-        }
-        RedisAtomicLong seqAtomic = new RedisAtomicLong(KEY_PREFIX + key, dictRedisTemplate.getConnectionFactory());
-        Long seq = seqAtomic.getAndIncrement();
-        return seq;
-    }
 
     /**
      * 获取序列号(仅获取)
@@ -52,19 +35,35 @@ public class RedisSequenceUtil {
     }
 
     /**
-     * 设置当前序列号，仅当当前期望值为0时
-     *
+     * 获取当前序列号(会自增+1)
+     * @param key
+     * @return
+     */
+    public Long getIncr(String key){
+        if(key==null){
+            return null;
+        }
+        RedisAtomicLong seqAtomic = new RedisAtomicLong(KEY_PREFIX+key,dictRedisTemplate.getConnectionFactory());
+        Long seq = seqAtomic.getAndIncrement();
+
+        return seq;
+    }
+
+    /**
+     * 设置当前序列号
      * @param key
      * @param nowValue
      * @return
      */
-    public boolean setIncr(String key, Long nowValue) {
-        RedisAtomicLong seqAtomic = new RedisAtomicLong(KEY_PREFIX + key, dictRedisTemplate.getConnectionFactory());
-        if (seqAtomic.compareAndSet(0L, nowValue)) {
-            System.out.println("compareAndSet:进入");
+    public boolean setIncr(String key,Long nowValue){
+        RedisAtomicLong seqAtomic = new RedisAtomicLong(KEY_PREFIX+key,dictRedisTemplate.getConnectionFactory());
+        if(seqAtomic.compareAndSet(0L,nowValue)){
+            System.out.println("compareAndSet:true");
             return true;
         }
         return false;
     }
 
+
 }
+

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 订单状态监听器
+ * @author wangmaogang
  */
 @Component
 @WithStateMachine(name = "OrderStateMachine")

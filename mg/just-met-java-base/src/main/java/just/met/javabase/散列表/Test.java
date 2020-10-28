@@ -1,10 +1,5 @@
 package just.met.javabase.散列表;
 
-import just.met.javabase.动态代理.jdk动态代理.ISubject;
-import just.met.javabase.动态代理.jdk动态代理.JdkDynamicProxy;
-import just.met.javabase.动态代理.jdk动态代理.RealSubject;
-
-import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -18,7 +13,7 @@ public class Test {
         UserInfo userInfo2 = new UserInfo(1,"2");
 
         //直接比较2个对象
-        System.out.println("userInfo.hashcode:"+Objects.hash(userInfo1));
+        System.out.println("userInfo.hashcode:"+ Objects.hash(userInfo1));
         System.out.println("userInfo2.hashcode:"+Objects.hash(userInfo2));
         System.out.println(userInfo1.equals(userInfo2));
 
