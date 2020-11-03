@@ -1,15 +1,16 @@
-package just.met.springboot.设计模式.context;
+package just.met.springboot.设计模式结合Spring.context;
 
 import just.met.springboot.feign.eneity.Result;
-import just.met.springboot.设计模式.eneity.DailyManagerInfo;
-import just.met.springboot.设计模式.ex.StrategyFailedException;
-import just.met.springboot.设计模式.strategy.BaseDailyManagerStrategy;
+import just.met.springboot.设计模式结合Spring.eneity.DailyManagerInfo;
+import just.met.springboot.设计模式结合Spring.ex.StrategyFailedException;
+import just.met.springboot.设计模式结合Spring.strategy.BaseDailyManagerStrategy;
 import lombok.Data;
 
 import java.util.Map;
 
 /**
  * 日常管理上下文策略类
+ * @author wangmaogang
  */
 @Data
 public class DailyManagerContext {

@@ -1,4 +1,4 @@
-package just.met.springboot.设计模式.ex;
+package just.met.springboot.设计模式结合Spring.ex;
 
 /**
  * 策略执行异常处理类

@@ -1,4 +1,4 @@
-package just.met.springboot.设计模式.eneity;
+package just.met.springboot.设计模式结合Spring.eneity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

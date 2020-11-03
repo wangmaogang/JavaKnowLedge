@@ -4,6 +4,7 @@ package just.met.springboot.idemp;
 import just.met.springboot.idemp.aspect.IdempotenceOperate;
 import just.met.springboot.idemp.eneity.R;
 import just.met.springboot.idemp.eneity.RequestInfo;
+import just.met.springboot.idemp.eneity.TestEntity;
 import just.met.springboot.idemp.service.impl.FixedIdempotenceIdGenerator;
 import just.met.springboot.idemp.tools.MethodParamTools;
 import just.met.springboot.idemp.tools.RedisTool;
@@ -11,9 +12,11 @@ import just.met.springboot.redis.service.RedisSeqCreateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -31,9 +34,9 @@ public class IdempotenceController {
     RedisTool redisTool;
 
     /**
-     * 幂等操作测试
+     * 幂等操作测试 - 简单字符串ID测试
      *
-     * @return
+     * @return R
      */
     @IdempotenceOperate(businessId = "bId")
     @RequestMapping(value = "test", method = RequestMethod.GET)
@@ -44,9 +47,35 @@ public class IdempotenceController {
     }
 
     /**
+     * 幂等操作测试 - 实体类中获取属性测试
+     *
+     * @return R
+     */
+    @IdempotenceOperate(businessId = "testEntity.orderId")
+    @RequestMapping(value = "testEntity", method = RequestMethod.POST)
+    public R testEntity(TestEntity testEntity) throws InterruptedException {
+        log.info("testEntity:" + testEntity.getOrderId());
+        Thread.sleep(10000);
+        return R.ok();
+    }
+
+    /**
+     * 幂等操作测试 - Map中获取属性测试
+     *
+     * @return R
+     */
+    @IdempotenceOperate(businessId = "map.bId")
+    @RequestMapping(value = "testMap", method = RequestMethod.GET)
+    public R testMap(@RequestParam Map<String, Object> map) throws InterruptedException {
+        log.info("map:" + map.values());
+        Thread.sleep(10000);
+        return R.ok();
+    }
+
+    /**
      * redis操作测试
      *
-     * @return
+     * @return R
      */
     @RequestMapping(value = "test2", method = RequestMethod.GET)
     public R test2(String content) {

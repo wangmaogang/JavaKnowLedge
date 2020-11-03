@@ -2,9 +2,7 @@ package just.met.springboot.idemp.singleton;
 
 import just.met.springboot.idemp.Idempotence;
 import just.met.springboot.idemp.service.impl.RedisIdempotenceStorage;
-import just.met.springboot.设计模式.utils.SpringBeanFactoryUtils;
-
-import javax.annotation.Resource;
+import just.met.springboot.设计模式结合Spring.utils.SpringBeanFactoryUtils;
 
 /**
  * 幂等函数单例类
@@ -15,9 +13,10 @@ public enum IdempotenceSingleton {
 
     INSTANCE;
 
-    private Idempotence instance;
+    private final Idempotence instance;
 
     IdempotenceSingleton(){
+        //获取Spring中的RedisIdempotenceStorage实例，创建新的Idempotence实例
         instance = new Idempotence(SpringBeanFactoryUtils.getBean(RedisIdempotenceStorage.class));
     }
 
