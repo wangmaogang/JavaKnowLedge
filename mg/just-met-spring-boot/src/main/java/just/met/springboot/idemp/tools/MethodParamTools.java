@@ -126,6 +126,7 @@ public class MethodParamTools {
         Object[] objects = joinPoint.getArgs();
         //循环参数，找到匹配的业务主键
         for (int i = 0; i < parameterNames.length; i++) {
+
             String parameterName = parameterNames[i];
             if (targetNames[0].equals(parameterName)) {
                 // 获取对象类型
@@ -154,30 +155,38 @@ public class MethodParamTools {
 
     /**
      * 返回指定对象的所有属性Map集合
-     * @param model 指定对象
+     * @param obj 指定对象
      * @return 返回Map集合
      * @throws NoSuchMethodException 抛出异常
      * @throws IllegalAccessException 抛出异常
      * @throws InvocationTargetException 抛出异常
      */
-    public static HashMap<String,Object> getObjInnerValues(Object model) throws NoSuchMethodException,IllegalAccessException,InvocationTargetException {
+    public static HashMap<String,Object> getObjInnerValues(Object obj) throws NoSuchMethodException,IllegalAccessException,InvocationTargetException {
 
         HashMap<String, Object> map = new HashMap<>(64);
-
-        Field[] fields = model.getClass().getDeclaredFields();
+        Field[] fields = obj.getClass().getDeclaredFields();
         //遍历所有属性
         for (Field field : fields) {
             //获取属性的名字
-            String name = field.getName();
-            System.out.println("attribute name:" + name);
+            String fieldName = field.getName();
             //将属性的首字符大写，方便构造get，set方法
-            name = name.substring(0, 1).toUpperCase() + name.substring(1);
-            //获取属性的类型
-            String type = field.getGenericType().toString();
+            String getMethodName = "get" + captureName(fieldName);
             //调用getter方法获取属性值
-            Method m = model.getClass().getMethod("get" + name);
-            map.put(field.getName(), m.invoke(model).toString());
+            Method m = obj.getClass().getMethod(getMethodName);
+            map.put(field.getName(), m.invoke(obj).toString());
         }
         return map;
+    }
+
+    /**
+     * 将字符串的首字母转大写
+     * @param str 需要转换的字符串
+     * @return 首字母转大写后的字符串
+     */
+    private static String captureName(String str) {
+        // 进行字母的ascii编码前移，效率要高于截取字符串进行转换的操作
+        char[] cs=str.toCharArray();
+        cs[0]-=32;
+        return String.valueOf(cs);
     }
 }
