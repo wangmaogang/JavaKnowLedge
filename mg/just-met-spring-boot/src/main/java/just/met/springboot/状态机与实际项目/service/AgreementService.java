@@ -1,18 +1,19 @@
 package just.met.springboot.状态机与实际项目.service;
 
+import just.met.springboot.idemp.eneity.R;
 import just.met.springboot.状态机与实际项目.eneity.Agreement;
 
 public interface AgreementService {
 
     Agreement init();
 
-    Agreement save(String id);
+    R save(String id);
 
-    Agreement submit(String id);
+    R submit(String id);
 
-    Agreement refuse(String id);
+    R refuse(String id);
 
-    Agreement confirm(String id) ;
+    R confirm(String id) ;
 
-    Agreement complete(String id) ;
+    R complete(String id) ;
 }

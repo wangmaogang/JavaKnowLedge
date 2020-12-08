@@ -29,36 +29,6 @@ import java.util.Optional;
 @Slf4j
 public class AgreementStateMachineConfig extends EnumStateMachineConfigurerAdapter<AgreementStatus, AgreementStatusChangeEvent> {
 
-    @Override
-    public void configure(StateMachineConfigurationConfigurer<AgreementStatus, AgreementStatusChangeEvent> config) throws Exception {
-        config.withConfiguration()
-                .listener(listener())
-                .autoStartup(true);
-    }
-
-    private StateMachineListener<AgreementStatus, AgreementStatusChangeEvent> listener() {
-
-        return new StateMachineListenerAdapter<AgreementStatus, AgreementStatusChangeEvent>() {
-            @Override
-            public void eventNotAccepted(Message<AgreementStatusChangeEvent> event) {
-                log.error("Not accepted event: {}", event);
-            }
-
-            @Override
-            public void transition(Transition<AgreementStatus, AgreementStatusChangeEvent> transition) {
-                log.warn("MOVE from: {}, to: {}",
-                        ofNullableState(transition.getSource()),
-                        ofNullableState(transition.getTarget()));
-            }
-
-            private Object ofNullableState(State s) {
-                return Optional.ofNullable(s)
-                        .map(State::getId)
-                        .orElse(null);
-            }
-        };
-    }
-
     /**
      * 配置状态
      *
@@ -81,15 +51,34 @@ public class AgreementStateMachineConfig extends EnumStateMachineConfigurerAdapt
     @Override
     public void configure(StateMachineTransitionConfigurer<AgreementStatus, AgreementStatusChangeEvent> transitions) throws Exception {
         transitions
-                .withExternal().source(AgreementStatus.INIT).target(AgreementStatus.IS_SAVED).event(AgreementStatusChangeEvent.SAVE)
+                .withExternal()
+                .source(AgreementStatus.INIT)
+                .target(AgreementStatus.IS_SAVED)
+                .event(AgreementStatusChangeEvent.SAVE)
+
                 .and()
-                .withExternal().source(AgreementStatus.IS_SAVED).target(AgreementStatus.IS_SUBMITTED).event(AgreementStatusChangeEvent.SUBMIT)
+                .withExternal()
+                .source(AgreementStatus.IS_SAVED)
+                .target(AgreementStatus.IS_SUBMITTED)
+                .event(AgreementStatusChangeEvent.SUBMIT)
+
                 .and()
-                .withExternal().source(AgreementStatus.IS_SUBMITTED).target(AgreementStatus.IS_CONFIRMED).event(AgreementStatusChangeEvent.CONFIRM)
+                .withExternal()
+                .source(AgreementStatus.IS_SUBMITTED)
+                .target(AgreementStatus.IS_CONFIRMED)
+                .event(AgreementStatusChangeEvent.CONFIRM)
+
                 .and()
-                .withExternal().source(AgreementStatus.IS_SUBMITTED).target(AgreementStatus.IS_REFUSED).event(AgreementStatusChangeEvent.REFUSE)
+                .withExternal()
+                .source(AgreementStatus.IS_SUBMITTED)
+                .target(AgreementStatus.IS_REFUSED)
+                .event(AgreementStatusChangeEvent.REFUSE)
+
                 .and()
-                .withExternal().source(AgreementStatus.IS_CONFIRMED).target(AgreementStatus.IS_COMPLETED).event(AgreementStatusChangeEvent.COMPLETE);
+                .withExternal()
+                .source(AgreementStatus.IS_CONFIRMED)
+                .target(AgreementStatus.IS_COMPLETED)
+                .event(AgreementStatusChangeEvent.COMPLETE);
     }
 
 }

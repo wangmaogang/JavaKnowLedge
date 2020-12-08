@@ -1,16 +1,17 @@
 package just.met.springboot.状态机与实际项目.listener;
 
-import just.met.springboot.状态机与实际项目.config.AgreementStateMachineConfig;
 import just.met.springboot.状态机与实际项目.define.AgreementStatus;
 import just.met.springboot.状态机与实际项目.define.AgreementStatusChangeEvent;
-import just.met.springboot.状态机与实际项目.define.Contacts;
 import just.met.springboot.状态机与实际项目.eneity.Agreement;
+import just.met.springboot.状态机与实际项目.service.AgreementService;
+import just.met.springboot.状态机与实际项目.service.AgreementServiceUpdate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.statemachine.annotation.OnTransition;
 import org.springframework.statemachine.annotation.WithStateMachine;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Objects;
 
 /**
@@ -22,6 +23,9 @@ import java.util.Objects;
 @Slf4j
 public class AgreementStateMachineListener {
 
+    @Resource
+    AgreementServiceUpdate agreementServiceUpdate;
+
     /**
      * 【事件处理器方法】初始化到保存
      * @param message AgreementStatusChangeEvent
@@ -31,7 +35,8 @@ public class AgreementStateMachineListener {
     public boolean saveTransition(Message<AgreementStatusChangeEvent> message){
         Agreement agreement = (Agreement) message.getHeaders().get("agreement");
         Objects.requireNonNull(agreement).setStatus(AgreementStatus.IS_SAVED);
-        log.info("AgreementStateMachineListener.saveTransition | headers=" + message.getHeaders().toString());
+        agreementServiceUpdate.save(agreement);
+        log.info("AgreementStateMachineListener.saveTransition | agreement.id = " + agreement.getId());
         return true;
     }
 
@@ -44,7 +49,8 @@ public class AgreementStateMachineListener {
     public boolean submitTransition(Message<AgreementStatusChangeEvent> message){
         Agreement agreement = (Agreement) message.getHeaders().get("agreement");
         Objects.requireNonNull(agreement).setStatus(AgreementStatus.IS_SUBMITTED);
-        log.info("AgreementStateMachineListener.submitTransition | headers=" + message.getHeaders().toString());
+        agreementServiceUpdate.submit(agreement);
+        log.info("AgreementStateMachineListener.submitTransition | agreement.id = " + agreement.getId());
         return true;
     }
 
@@ -57,7 +63,8 @@ public class AgreementStateMachineListener {
     public boolean confirmTransition(Message<AgreementStatusChangeEvent> message){
         Agreement agreement = (Agreement) message.getHeaders().get("agreement");
         Objects.requireNonNull(agreement).setStatus(AgreementStatus.IS_CONFIRMED);
-        log.info("AgreementStateMachineListener.confirmTransition | headers=" + message.getHeaders().toString());
+        agreementServiceUpdate.confirm(agreement);
+        log.info("AgreementStateMachineListener.confirmTransition | agreement.id = " + agreement.getId());
         return true;
     }
 
@@ -70,7 +77,8 @@ public class AgreementStateMachineListener {
     public boolean refuseTransition(Message<AgreementStatusChangeEvent> message){
         Agreement agreement = (Agreement) message.getHeaders().get("agreement");
         Objects.requireNonNull(agreement).setStatus(AgreementStatus.IS_REFUSED);
-        log.info("AgreementStateMachineListener.refuseTransition | headers=" + message.getHeaders().toString());
+        agreementServiceUpdate.refuse(agreement);
+        log.info("AgreementStateMachineListener.refuseTransition | agreement.id = " + agreement.getId());
         return true;
     }
 
@@ -83,7 +91,8 @@ public class AgreementStateMachineListener {
     public boolean completeTransition(Message<AgreementStatusChangeEvent> message){
         Agreement agreement = (Agreement) message.getHeaders().get("agreement");
         Objects.requireNonNull(agreement).setStatus(AgreementStatus.IS_COMPLETED);
-        log.info("AgreementStateMachineListener.completeTransition | headers=" + message.getHeaders().toString());
+        agreementServiceUpdate.complete(agreement);
+        log.info("AgreementStateMachineListener.completeTransition | agreement.id = " + agreement.getId());
         return true;
     }
 

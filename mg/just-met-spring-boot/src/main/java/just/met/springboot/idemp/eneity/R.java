@@ -44,6 +44,11 @@ public class R extends HashMap<String, Object> {
         return r;
     }
 
+    public static boolean isSuccess(Map<String, Object> map) {
+        int code = (int)map.get("code");
+        return code == 0;
+    }
+
     public static R ok() {
         return new R();
     }
@@ -53,4 +58,5 @@ public class R extends HashMap<String, Object> {
         super.put(key, value);
         return this;
     }
+
 }
