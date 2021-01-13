@@ -142,6 +142,17 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!-- squirrel -->
+        <dependency>
+            <groupId>org.squirrelframework</groupId>
+            <artifactId>squirrel-foundation</artifactId>
+            <version>0.3.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.2.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -2,7 +2,7 @@ package just.met.springboot.idemp.singleton;
 
 import just.met.springboot.idemp.Idempotence;
 import just.met.springboot.idemp.service.impl.RedisIdempotenceStorage;
-import just.met.springboot.设计模式结合Spring.utils.SpringBeanFactoryUtils;
+import just.met.springboot.策略及门面模式结合Spring.utils.SpringBeanFactoryUtils;
 
 /**
  * 幂等函数单例类

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="just.met.mybatis.useful.dao.BigTableDao">
+
+    <resultMap type="just.met.mybatis.useful.entity.BigTable" id="BigTableMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="passwd" column="passwd" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="OTHER"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="selectById" resultMap="BigTableMap">
+        select
+          id, name, mobile, passwd, sex, birthday, updated_time
+        from wmg_test.big_table
+        where ID = #{id}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectList" resultMap="BigTableMap">
+        select
+        id, name, mobile, passwd, sex, birthday, updated_time
+        from wmg_test.big_table
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="passwd != null and passwd != ''">
+                and passwd = #{passwd}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+            <if test="updatedTime != null">
+                and updated_time = #{updatedTime}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <!--插入数据-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into wmg_test.big_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name ,
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile ,
+            </if>
+            <if test="passwd != null and passwd != ''">
+                passwd ,
+            </if>
+            <if test="sex != null">
+                sex ,
+            </if>
+            <if test="birthday != null">
+                birthday ,
+            </if>
+            <if test="updatedTime != null">
+                updated_time ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                #{name} ,
+            </if>
+            <if test="mobile != null and mobile != ''">
+                #{mobile} ,
+            </if>
+            <if test="passwd != null and passwd != ''">
+                #{passwd} ,
+            </if>
+            <if test="sex != null">
+                #{sex} ,
+            </if>
+            <if test="birthday != null">
+                #{birthday} ,
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime} ,
+            </if>
+        </trim>
+    </insert>
+
+    <!--批量插入数据-->
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into wmg_test.big_table
+        (name, mobile, passwd, sex, birthday, updated_time)
+        values
+        <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+            (#{item.name}, #{item.mobile}, #{item.passwd}, #{item.sex}, #{item.birthday}, #{item.updatedTime})
+        </foreach>
+    </insert>
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update wmg_test.big_table
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="passwd != null and passwd != ''">
+                passwd = #{passwd},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--批量更新数据-->
+    <insert id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update wmg_test.big_table
+            <trim prefix="set" suffixOverrides=",">
+                <if test="item.name != null and item.name != ''">
+                    name = #{item.name},
+                </if>
+                <if test="item.mobile != null and item.mobile != ''">
+                    mobile = #{item.mobile},
+                </if>
+                <if test="item.passwd != null and item.passwd != ''">
+                    passwd = #{item.passwd},
+                </if>
+                <if test="item.sex != null">
+                    sex = #{item.sex},
+                </if>
+                <if test="item.birthday != null">
+                    birthday = #{item.birthday},
+                </if>
+                <if test="item.updatedTime != null">
+                    updated_time = #{item.updatedTime},
+                </if>
+            </trim>
+            where ID = #{item.id}
+        </foreach>
+    </insert>
+
+    <!--通过主键物理删除-->
+    <delete id="deleteById">
+        delete from wmg_test.big_table where ID = #{id}
+    </delete>
+
+</mapper>

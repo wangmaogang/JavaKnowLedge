@@ -1,10 +1,8 @@
 package just.met.springboot.feign.controller.test;
 
 import just.met.springboot.JustMetSpringBootApplication;
-import just.met.springboot.feign.eneity.WordSignEntity;
-import just.met.springboot.feign.service.WordProcessService;
-import just.met.springboot.状态机与实际项目.eneity.Agreement;
-import just.met.springboot.状态机与实际项目.service.AgreementService;
+import just.met.springboot.Spring状态机与实际项目.eneity.Agreement;
+import just.met.springboot.Spring状态机与实际项目.service.AgreementService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="just.met.mybatis.useful2.dao.BigTable2Dao">
+  <resultMap id="BaseResultMap" type="just.met.mybatis.useful2.eneity.BigTable">
+    <id column="big_table_id" jdbcType="INTEGER" property="id" />
+    <result column="big_table_name" jdbcType="VARCHAR" property="name" />
+    <result column="big_table_mobile" jdbcType="CHAR" property="mobile" />
+    <result column="big_table_passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="big_table_sex" jdbcType="TINYINT" property="sex" />
+    <result column="big_table_birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="big_table_updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    big_table.id as big_table_id, big_table.`name` as `big_table_name`, big_table.mobile as big_table_mobile, 
+    big_table.passwd as big_table_passwd, big_table.sex as big_table_sex, big_table.birthday as big_table_birthday, 
+    big_table.updated_time as big_table_updated_time
+  </sql>
+  <select id="selectByExample" parameterType="just.met.mybatis.useful2.eneity.BigTableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from big_table big_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from big_table big_table
+    where big_table.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from big_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="just.met.mybatis.useful2.eneity.BigTableExample">
+    delete from big_table big_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="just.met.mybatis.useful2.eneity.BigTable" useGeneratedKeys="true">
+    insert into big_table (`name`, mobile, passwd, 
+      sex, birthday, updated_time
+      )
+    values (#{name,jdbcType=VARCHAR}, #{mobile,jdbcType=CHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=TINYINT}, #{birthday,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="just.met.mybatis.useful2.eneity.BigTable" useGeneratedKeys="true">
+    insert into big_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="just.met.mybatis.useful2.eneity.BigTableExample" resultType="java.lang.Long">
+    select count(*) from big_table big_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update big_table big_table
+    <set>
+      <if test="record.id != null">
+        big_table.id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        big_table.`name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        big_table.mobile = #{record.mobile,jdbcType=CHAR},
+      </if>
+      <if test="record.passwd != null">
+        big_table.passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        big_table.sex = #{record.sex,jdbcType=TINYINT},
+      </if>
+      <if test="record.birthday != null">
+        big_table.birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null">
+        big_table.updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update big_table big_table
+    set big_table.id = #{record.id,jdbcType=INTEGER},
+      big_table.`name` = #{record.name,jdbcType=VARCHAR},
+      big_table.mobile = #{record.mobile,jdbcType=CHAR},
+      big_table.passwd = #{record.passwd,jdbcType=VARCHAR},
+      big_table.sex = #{record.sex,jdbcType=TINYINT},
+      big_table.birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      big_table.updated_time = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="just.met.mybatis.useful2.eneity.BigTable">
+    update big_table
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="just.met.mybatis.useful2.eneity.BigTable">
+    update big_table
+    set `name` = #{name,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=CHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
