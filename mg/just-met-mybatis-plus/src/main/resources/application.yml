@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: just-met-mybatis-plus-service
+  profiles:
+    active: local
